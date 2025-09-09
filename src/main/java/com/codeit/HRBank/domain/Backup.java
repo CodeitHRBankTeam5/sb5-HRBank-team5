@@ -49,6 +49,6 @@ public class Backup {
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "file_id", nullable = false,
-      foreignKey = @ForeignKey(name = "backups_files_id_fk"))
+          foreignKey = @ForeignKey(name = "backups_files_id_fk"))
   private File file;
 }

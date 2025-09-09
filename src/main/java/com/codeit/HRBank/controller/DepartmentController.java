@@ -1,5 +1,6 @@
 package com.codeit.HRBank.controller;
 
+import com.codeit.HRBank.service.DepartmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/api/departments")
 public class DepartmentController {
 
-    /* private final DepartmentService departmentService;
+    private final DepartmentService departmentService;
 
     @Operation(summary = "부서 목록 조회")
     @GetMapping
@@ -27,7 +28,7 @@ public class DepartmentController {
     @PostMapping
     public ResponseEntity<DepartmentResponse> create(@RequestBody DepartmentCreateRequest request) {
         DepartmentResponse res = departmentService.create(req);
-        return ResponseEntity.created(URI.create("/api/departments/" + res.id()))).body.(res);
+        return ResponseEntity.created(URI.create("/api/departments/" + res.id())).body.(res);
     }
 
     @Operation(summary = "부서 상세 조회")
@@ -40,7 +41,14 @@ public class DepartmentController {
     @Operation(summary = "부서 삭제")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
+        boolean deleted = departmentService.delete(id);
+        return (deleted) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
 
-    }*/
-
+    @Operation(summary = "부서 수정")
+    @PatchMapping("/{id}")
+    public ResponseEntity<DepartmentResponse> update(@PathVariable Long id, @ReqeustBody DepartmentUpdateRequest req) {
+        DepartmentResponse res = departmentService.update(id, req);
+        return (res == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(res);
+    }
 }
