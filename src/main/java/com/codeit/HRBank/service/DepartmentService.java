@@ -1,9 +1,10 @@
 package com.codeit.HRBank.service;
 
 import com.codeit.HRBank.domain.Department;
-import com.codeit.HRBank.dto.Department.DepartmentCreateRequest;
-import com.codeit.HRBank.dto.Department.DepartmentDto;
-import com.codeit.HRBank.dto.Department.DepartmentUpdateRequest;
+import com.codeit.HRBank.dto.request.DepartmentCreateRequest;
+import com.codeit.HRBank.dto.data.DepartmentDto;
+import com.codeit.HRBank.dto.request.DepartmentUpdateRequest;
+import com.codeit.HRBank.mapper.DepartmentMapper;
 import com.codeit.HRBank.repository.DepartmentRepository;
 import com.codeit.HRBank.repository.EmployeeRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,20 +17,21 @@ import org.springframework.stereotype.Service;
 public class DepartmentService {
     private final DepartmentRepository departmentRepository;
     private final EmployeeRepository employeeRepository;
+    private final DepartmentMapper departmentMapper;
 
     @Transactional
     public DepartmentDto create(DepartmentCreateRequest request) {
-        if (departmentRepository.existsByName(request.getName())) {
-            throw new IllegalArgumentException("이미 존재하는 부서명 : " + request.getName());
+        if (departmentRepository.existsByName(request.name())) {
+            throw new IllegalArgumentException("이미 존재하는 부서명 : " + request.name());
         }
         Department savedDepartment = departmentRepository.save(
                 Department.builder()
-                        .name(request.getName())
-                        .description(request.getDescription())
-                        .establishedDate(request.getEstablishedDate())
+                        .name(request.name())
+                        .description(request.description())
+                        .establishedDate(request.establishedDate())
                         .build()
         );
-        return toDto(savedDepartment);
+        return departmentMapper.toDto(savedDepartment);
     }
 
     @Transactional
@@ -38,40 +40,31 @@ public class DepartmentService {
                 () -> new EntityNotFoundException("부서를 찾을 수 없음 : " + id)
         );
 
-        if (!request.getName().equals(department.getName())) {
-            if (!departmentRepository.existsByName(request.getName())) {
-                throw new IllegalArgumentException("중복된 부서명 : " + request.getName());
+        if (!request.name().equals(department.getName())) {
+            if (departmentRepository.existsByName(request.name())) {
+                throw new IllegalArgumentException("중복된 부서명 : " + request.name());
             }
-            department.setName(request.getName());
+            department.setName(request.name());
         }
 
-        if (request.getDescription() != null) {
-            department.setDescription(request.getDescription());
+        if (request.description() != null) {
+            department.setDescription(request.description());
         }
 
-        if (request.getEstablishedDate() != null) {
-            department.setEstablishedDate(request.getEstablishedDate());
+        if (request.establishedDate() != null) {
+            department.setEstablishedDate(request.establishedDate());
         }
 
-        return toDto(department);
+        return departmentMapper.toDto(department);
     }
 
     @Transactional
     public boolean delete(Long id) {
-        if (departmentRepository.existsById(id)) {
-            departmentRepository.deleteById(id);
+        if (!departmentRepository.existsById(id)) {
+            return false;
         }
+        departmentRepository.deleteById(id);
         return true;
-    }
-
-    private DepartmentDto toDto(Department department) {
-        return new DepartmentDto(
-                department.getId(),
-                department.getName(),
-                department.getDescription(),
-                department.getEstablishedDate()
-                // department.getEmployeeCount() // 구현 전 컴파일 에러 방지 주석
-        );
     }
 
 }

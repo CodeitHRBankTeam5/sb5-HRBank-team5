@@ -1,8 +1,8 @@
 package com.codeit.HRBank.controller;
 
-import com.codeit.HRBank.dto.Department.DepartmentCreateRequest;
-import com.codeit.HRBank.dto.Department.DepartmentDto;
-import com.codeit.HRBank.dto.Department.DepartmentUpdateRequest;
+import com.codeit.HRBank.dto.request.DepartmentCreateRequest;
+import com.codeit.HRBank.dto.data.DepartmentDto;
+import com.codeit.HRBank.dto.request.DepartmentUpdateRequest;
 import com.codeit.HRBank.service.DepartmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -33,7 +33,7 @@ public class DepartmentController {
             @RequestBody DepartmentCreateRequest request
     ) {
         DepartmentDto created = departmentService.create(request);
-        return ResponseEntity.created(URI.create("/api/departments/" + created.getId())).body(created);
+        return ResponseEntity.created(URI.create("/api/departments/" + created.id())).body(created);
     }
 
     /* 조회는 아직 사용 X
