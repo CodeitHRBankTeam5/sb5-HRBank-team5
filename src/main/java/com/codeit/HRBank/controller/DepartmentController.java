@@ -7,6 +7,7 @@ import com.codeit.HRBank.service.DepartmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class DepartmentController {
             @RequestBody DepartmentCreateRequest request
     ) {
         DepartmentDto created = departmentService.create(request);
-        return ResponseEntity.created(URI.create("/api/departments/" + created.id())).body(created);
+        return ResponseEntity.status(HttpStatus.OK).body(created);
     }
 
     /* 조회는 아직 사용 X
