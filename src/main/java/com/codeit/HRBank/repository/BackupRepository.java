@@ -1,7 +1,8 @@
 package com.codeit.HRBank.repository;
+import com.codeit.HRBank.domain.Backup;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class BackupRepository {
+public interface BackupRepository extends JpaRepository<Backup,Long> {
+
 }

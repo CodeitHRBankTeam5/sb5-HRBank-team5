@@ -1,7 +1,7 @@
 package com.codeit.HRBank.repository;
 
-import org.springframework.stereotype.Repository;
+import com.codeit.HRBank.domain.Change_log;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class ChangeLogRepository {
+public interface ChangeLogRepository extends JpaRepository<Change_log,Long> {
 }

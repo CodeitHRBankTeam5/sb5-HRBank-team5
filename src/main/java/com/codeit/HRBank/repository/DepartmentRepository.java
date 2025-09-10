@@ -1,7 +1,8 @@
 package com.codeit.HRBank.repository;
 
-import org.springframework.stereotype.Repository;
+import com.codeit.HRBank.domain.Department;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class DepartmentRepository {
+public interface DepartmentRepository extends JpaRepository<Department,Long> {
+    boolean existsByName(String name);
 }

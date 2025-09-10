@@ -1,7 +1,7 @@
 package com.codeit.HRBank.repository;
 
-import org.springframework.stereotype.Repository;
+import com.codeit.HRBank.domain.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class EmployeeRepository {
+public interface EmployeeRepository extends JpaRepository<Employee,Long> {
 }

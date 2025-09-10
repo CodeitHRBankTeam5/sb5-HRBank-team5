@@ -1,7 +1,7 @@
 package com.codeit.HRBank.repository;
 
-import org.springframework.stereotype.Repository;
+import com.codeit.HRBank.domain.File;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class FileRepository {
+public interface FileRepository extends JpaRepository<File,Long> {
 }
