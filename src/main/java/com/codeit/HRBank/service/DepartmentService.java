@@ -1,23 +1,34 @@
 package com.codeit.HRBank.service;
 
 import com.codeit.HRBank.domain.Department;
-import com.codeit.HRBank.dto.request.DepartmentCreateRequest;
 import com.codeit.HRBank.dto.data.DepartmentDto;
+import com.codeit.HRBank.dto.request.DepartmentCreateRequest;
 import com.codeit.HRBank.dto.request.DepartmentUpdateRequest;
+import com.codeit.HRBank.dto.response.CursorPageResponseDepartmentDto;
 import com.codeit.HRBank.mapper.DepartmentMapper;
 import com.codeit.HRBank.repository.DepartmentRepository;
-import com.codeit.HRBank.repository.EmployeeRepository;
-import jakarta.persistence.EntityNotFoundException;
-import jakarta.transaction.Transactional;
+import java.time.LocalDateTime;
+import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class DepartmentService {
+
     private final DepartmentRepository departmentRepository;
-    private final EmployeeRepository employeeRepository;
     private final DepartmentMapper departmentMapper;
+
+    private static final Logger log = LoggerFactory.getLogger(DepartmentService.class);
+
 
     @Transactional
     public DepartmentDto create(DepartmentCreateRequest request) {
@@ -37,7 +48,7 @@ public class DepartmentService {
     @Transactional
     public DepartmentDto update(Long id, DepartmentUpdateRequest request) {
         Department department = departmentRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("부서를 찾을 수 없음 : " + id)
+                () -> new NoSuchElementException("부서를 찾을 수 없음 : " + id)
         );
 
         if (!request.name().equals(department.getName())) {
@@ -65,6 +76,45 @@ public class DepartmentService {
         }
         departmentRepository.deleteById(id);
         return true;
+    }
+
+
+    @Transactional
+    public DepartmentDto find(Long departmentId) {
+        return departmentRepository.findById(departmentId)
+                .map(departmentMapper::toDto)
+                .orElseThrow(
+                        () -> new NoSuchElementException(
+                                "Department with id" + departmentId + "notfound"));
+    }
+
+    @Transactional
+    public CursorPageResponseDepartmentDto findByCondition(
+            String nameOrDescription,
+            Long idAfter,
+            String cursor,
+            Integer size,
+            String sortField,
+            String sortDirection) {
+
+//        Long idAfter = request.idAfter();
+//        String cursor = request.cursor();
+//        int size = (request.size() != null && request.size() > 0) ? request.size() : 10;
+        sortField = (sortField != null) ? sortField : "establishedDate";
+        sortDirection = (sortDirection != null) ? sortDirection : "ASC";
+        Sort.Direction direction = Sort.Direction.fromString(sortDirection);
+        Sort sort = Sort.by(direction, sortField);
+
+        log.info("sortField: {}", sortField);
+
+        Pageable pageable = PageRequest.of(0, size, sort);
+
+        Slice<Department> departmentSlice = departmentRepository.findByCondition(
+            idAfter, nameOrDescription, pageable
+        );
+
+        return departmentMapper.toDtoSlice(departmentSlice);
+
     }
 
 }
