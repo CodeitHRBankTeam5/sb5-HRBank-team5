@@ -4,10 +4,8 @@ package com.codeit.HRBank.mapper;
 import com.codeit.HRBank.domain.Backup;
 import com.codeit.HRBank.dto.data.BackupDto;
 import com.codeit.HRBank.dto.response.CursorPageResponseBackupDto;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;
 

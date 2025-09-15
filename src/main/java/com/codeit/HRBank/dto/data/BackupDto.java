@@ -1,9 +1,6 @@
 package com.codeit.HRBank.dto.data;
 
 import com.codeit.HRBank.domain.BackupStatus;
-
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record BackupDto(
@@ -11,8 +8,8 @@ public record BackupDto(
     String worker,
     LocalDateTime startedAt,
     LocalDateTime endedAt,
-    BackupStatus status
-    , Long fileId
+    BackupStatus status,
+    Long fileId
 ) {
 
 }

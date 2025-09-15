@@ -6,10 +6,7 @@ import com.codeit.HRBank.dto.request.FileCreateRequest;
 import com.codeit.HRBank.mapper.FileMapper;
 import com.codeit.HRBank.repository.FileRepository;
 import com.codeit.HRBank.storage.FileStorage;
-
-import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

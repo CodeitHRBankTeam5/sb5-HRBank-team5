@@ -1,7 +1,5 @@
 package com.codeit.HRBank.dto.response;
 
-import com.codeit.HRBank.dto.data.BackupDto;
-
 import java.util.List;
 
 public record CursorPageResponseBackupDto<T>(

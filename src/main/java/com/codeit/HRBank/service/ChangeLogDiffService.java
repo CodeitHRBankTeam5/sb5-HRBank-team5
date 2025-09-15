@@ -4,11 +4,9 @@ import com.codeit.HRBank.domain.ChangeLog;
 import com.codeit.HRBank.domain.ChangeLogDiff;
 import com.codeit.HRBank.domain.Employee;
 import com.codeit.HRBank.repository.ChangeLogDiffRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

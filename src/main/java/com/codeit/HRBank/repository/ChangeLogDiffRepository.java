@@ -1,9 +1,8 @@
 package com.codeit.HRBank.repository;
 
 import com.codeit.HRBank.domain.ChangeLogDiff;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ChangeLogDiffRepository extends JpaRepository<ChangeLogDiff, Long> {
 

@@ -3,11 +3,10 @@ package com.codeit.HRBank.mapper;
 import com.codeit.HRBank.domain.ChangeLog;
 import com.codeit.HRBank.dto.data.ChangeLogDto;
 import com.codeit.HRBank.dto.response.CursorPageResponseChangeLogDto;
-import org.springframework.data.domain.Slice;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.Slice;
+import org.springframework.stereotype.Component;
 
 @Component
 public class ChangeLogMapper {

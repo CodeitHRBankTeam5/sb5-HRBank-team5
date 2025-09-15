@@ -7,12 +7,8 @@ import com.codeit.HRBank.dto.request.DepartmentUpdateRequest;
 import com.codeit.HRBank.dto.response.CursorPageResponseDepartmentDto;
 import com.codeit.HRBank.mapper.DepartmentMapper;
 import com.codeit.HRBank.repository.DepartmentRepository;
-
-import java.time.LocalDateTime;
 import java.util.NoSuchElementException;
-
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;

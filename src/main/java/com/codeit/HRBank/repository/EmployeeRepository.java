@@ -1,15 +1,9 @@
 package com.codeit.HRBank.repository;
 
-import com.codeit.HRBank.domain.Department;
 import com.codeit.HRBank.domain.Employee;
 import com.codeit.HRBank.domain.EmploymentStatus;
-import com.codeit.HRBank.dto.data.EmployeeTrendDto;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;

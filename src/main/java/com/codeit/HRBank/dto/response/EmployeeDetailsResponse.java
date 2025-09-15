@@ -1,12 +1,9 @@
 package com.codeit.HRBank.dto.response;
 
 import com.codeit.HRBank.domain.Employee;
-
 import java.time.LocalDate;
-
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 @Builder

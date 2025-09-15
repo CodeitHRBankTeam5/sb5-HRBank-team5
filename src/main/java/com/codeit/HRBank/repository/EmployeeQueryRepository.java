@@ -1,18 +1,19 @@
 package com.codeit.HRBank.repository;
 
-import com.codeit.HRBank.domain.*;
+import com.codeit.HRBank.domain.EmploymentStatus;
+import com.codeit.HRBank.domain.QDepartment;
+import com.codeit.HRBank.domain.QEmployee;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.dsl.DatePath;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringTemplate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor

@@ -1,10 +1,7 @@
 package com.codeit.HRBank.dto.request;
 
 import com.codeit.HRBank.domain.EmploymentStatus;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import lombok.Getter;
 import lombok.Setter;
 

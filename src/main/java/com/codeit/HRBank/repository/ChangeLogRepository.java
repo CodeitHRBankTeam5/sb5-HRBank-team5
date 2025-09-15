@@ -2,14 +2,13 @@ package com.codeit.HRBank.repository;
 
 import com.codeit.HRBank.domain.ChangeLog;
 import com.codeit.HRBank.domain.ChangeLogType;
+import java.time.LocalDateTime;
+import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 public interface ChangeLogRepository extends JpaRepository<ChangeLog, Long> {
 

@@ -1,15 +1,10 @@
 package com.codeit.HRBank.mapper;
 
-import com.codeit.HRBank.domain.Department;
 import com.codeit.HRBank.domain.Employee;
-import com.codeit.HRBank.dto.data.DepartmentDto;
 import com.codeit.HRBank.dto.data.EmployeeDto;
-import com.codeit.HRBank.dto.response.CursorPageResponseDepartmentDto;
 import com.codeit.HRBank.dto.response.CursorPageResponseEmployeeDto;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,6 @@
 package com.codeit.HRBank.dto.data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import lombok.Builder;
 
 @Builder

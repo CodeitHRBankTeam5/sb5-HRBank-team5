@@ -1,23 +1,20 @@
 package com.codeit.HRBank.service;
 
-import com.codeit.HRBank.domain.ChangeLogType;
 import com.codeit.HRBank.domain.ChangeLog;
+import com.codeit.HRBank.domain.ChangeLogType;
+import com.codeit.HRBank.domain.Employee;
+import com.codeit.HRBank.dto.data.ChangeLogDto;
 import com.codeit.HRBank.dto.data.DiffDto;
 import com.codeit.HRBank.dto.response.CursorPageResponseChangeLogDto;
+import com.codeit.HRBank.mapper.ChangeLogMapper;
 import com.codeit.HRBank.repository.ChangeLogDiffRepository;
-
+import com.codeit.HRBank.repository.ChangeLogRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.NoSuchElementException;
-
-import com.codeit.HRBank.domain.Employee;
-import com.codeit.HRBank.dto.data.ChangeLogDto;
-import com.codeit.HRBank.mapper.ChangeLogMapper;
-import com.codeit.HRBank.repository.ChangeLogRepository;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
