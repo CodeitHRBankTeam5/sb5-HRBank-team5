@@ -1,6 +1,8 @@
 package com.codeit.HRBank.repository;
 
 import com.codeit.HRBank.domain.EmploymentStatus;
+import com.codeit.HRBank.domain.QChangeLog;
+import com.codeit.HRBank.domain.QChangeLogDiff;
 import com.codeit.HRBank.domain.QDepartment;
 import com.codeit.HRBank.domain.QEmployee;
 import com.querydsl.core.Tuple;
