@@ -24,23 +24,23 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class Change_log_diff {
+public class ChangeLogDiff {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "log_id", nullable = false,
-      foreignKey = @ForeignKey(name = "change_log_diffs_change_logs_id_fk"))
-  private Change_log log;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "log_id", nullable = false,
+            foreignKey = @ForeignKey(name = "change_log_diffs_change_logs_id_fk"))
+    private ChangeLog log;
 
-  @Column(name = "property_name", nullable = false, length = 50)
-  private String propertyName;
+    @Column(name = "property_name", nullable = false, length = 50)
+    private String propertyName;
 
-  @Column(name = "before", length = 100)
-  private String beforeValue;
+    @Column(name = "before", length = 100)
+    private String beforeValue;
 
-  @Column(name = "after", length = 100)
-  private String afterValue;
+    @Column(name = "after", length = 100)
+    private String afterValue;
 }

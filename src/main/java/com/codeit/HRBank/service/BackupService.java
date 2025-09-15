@@ -3,7 +3,7 @@ package com.codeit.HRBank.service;
 
 import com.codeit.HRBank.domain.Backup;
 import com.codeit.HRBank.domain.BackupStatus;
-import com.codeit.HRBank.domain.Change_log;
+import com.codeit.HRBank.domain.ChangeLog;
 import com.codeit.HRBank.domain.Employee;
 import com.codeit.HRBank.domain.File;
 import com.codeit.HRBank.dto.data.BackupDto;
@@ -15,6 +15,7 @@ import com.codeit.HRBank.repository.EmployeeRepository;
 import com.codeit.HRBank.repository.FileRepository;
 import com.codeit.HRBank.storage.FileStorage;
 import jakarta.transaction.Transactional;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -23,6 +24,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,8 +92,8 @@ public class BackupService {
 
                 // 메모리에 CSV 데이터를 작성하는 로직으로 변경
                 try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
-                        OutputStreamWriter writer = new OutputStreamWriter(bos,
-                                StandardCharsets.UTF_8)) {
+                     OutputStreamWriter writer = new OutputStreamWriter(bos,
+                             StandardCharsets.UTF_8)) {
 
                     writer.append(
                             "id,name,email,employee_number,department_id,position,hire_date,status\n");
@@ -192,7 +194,8 @@ public class BackupService {
         // backup이 null일 경우 DTO 변환을 시도하지 않고 null을 반환
         if (backup == null) {
             return null;
-        };
+        }
+        ;
         return backupMapper.toDto(backup);
     }
 
@@ -217,7 +220,7 @@ public class BackupService {
         log.info("마지막백업시간: {}", lastBackupTime);
 
         // 2. 가장 최근 직원 정보 수정 시간 가져옴
-        Optional<Change_log> latestChangeLog = changeLogRepository.findFirstByOrderByAtDesc();
+        Optional<ChangeLog> latestChangeLog = changeLogRepository.findFirstByOrderByAtDesc();
 
         // 3. 마지막 백업 시간과 최근 변경 이력 시간 비교
         if (latestChangeLog.isPresent()) {

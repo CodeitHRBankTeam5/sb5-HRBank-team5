@@ -1,10 +1,11 @@
 package com.codeit.HRBank.repository;
 
-import com.codeit.HRBank.domain.Change_log_diff;
-import java.util.List;
+import com.codeit.HRBank.domain.ChangeLogDiff;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ChangeLogDiffRepository extends JpaRepository<Change_log_diff, Long> {
+import java.util.List;
 
-  List<Change_log_diff> findAllByLog_Id(Long logId);
+public interface ChangeLogDiffRepository extends JpaRepository<ChangeLogDiff, Long> {
+
+    List<ChangeLogDiff> findAllByLog_Id(Long logId);
 }

@@ -1,38 +1,26 @@
 package com.codeit.HRBank.repository;
 
-import com.codeit.HRBank.domain.Employee;
-import com.codeit.HRBank.domain.EmploymentStatus;
-import com.codeit.HRBank.domain.QChange_log;
-import com.codeit.HRBank.domain.QChange_log_diff;
-import com.codeit.HRBank.domain.QDepartment;
-import com.codeit.HRBank.domain.QEmployee;
-import com.codeit.HRBank.dto.data.EmployeeDistributionDto;
-import com.codeit.HRBank.dto.data.EmployeeTrendDto;
+import com.codeit.HRBank.domain.*;
 import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Expression;
-import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.DatePath;
 import com.querydsl.core.types.dsl.Expressions;
-import com.querydsl.core.types.dsl.NumberExpression;
-import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.core.types.dsl.StringExpression;
 import com.querydsl.core.types.dsl.StringTemplate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
 public class EmployeeQueryRepository {
     private final JPAQueryFactory queryFactory; //Querydsl쿼리를 생성하고 실행하는 핵심객체
     private static final QEmployee employee = QEmployee.employee; // <-- QEmployee 인스턴스 사용 employees 테이블의 각 컬럼에 접근가능
-    private static final QChange_log changeLog = QChange_log.change_log;
-    private static final QChange_log_diff changeLogDiff = QChange_log_diff.change_log_diff;
+    private static final QChangeLog changeLog = QChangeLog.changeLog;
+    private static final QChangeLogDiff changeLogDiff = QChangeLogDiff.changeLogDiff;
     private static final QDepartment department = QDepartment.department;
 
 
@@ -82,6 +70,7 @@ public class EmployeeQueryRepository {
 
         return hiredBefore - resignedBefore;
     }
+
     // 전체 직원 수를 세는 쿼리 메서드 (레포지토리에도 추가해야 함)
     // 이 메서드는 EmployeeQueryRepository에 추가되어야 합니다.
     public Long countByStatus(EmploymentStatus status) {
