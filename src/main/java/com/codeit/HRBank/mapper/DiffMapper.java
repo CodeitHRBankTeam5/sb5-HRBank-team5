@@ -13,9 +13,9 @@ public class DiffMapper {
         }
 
         return new DiffDto(
-                changeLogDiff.getPropertyName(),
-                changeLogDiff.getBeforeValue(),
-                changeLogDiff.getAfterValue()
+            changeLogDiff.getPropertyName(),
+            changeLogDiff.getBeforeValue(),
+            changeLogDiff.getAfterValue()
         );
     }
 }

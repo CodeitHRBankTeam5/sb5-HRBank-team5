@@ -1,6 +1,7 @@
 package com.codeit.HRBank.dto.data;
 
 import com.codeit.HRBank.domain.EmploymentStatus;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 

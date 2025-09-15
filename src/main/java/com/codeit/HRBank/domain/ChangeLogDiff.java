@@ -32,7 +32,7 @@ public class ChangeLogDiff {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "log_id", nullable = false,
-            foreignKey = @ForeignKey(name = "change_log_diffs_change_logs_id_fk"))
+        foreignKey = @ForeignKey(name = "change_log_diffs_change_logs_id_fk"))
     private ChangeLog log;
 
     @Column(name = "property_name", nullable = false, length = 50)

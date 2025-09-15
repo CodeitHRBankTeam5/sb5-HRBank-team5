@@ -17,23 +17,23 @@ public class ChangeLogMapper {
             return null;
         }
         return new ChangeLogDto(
-                changeLog.getId(),
-                changeLog.getType().name(),
-                changeLog.getEmployeeNumber(),
-                changeLog.getMemo(),
-                changeLog.getIpAddress() == null ? null : changeLog.getIpAddress().toString(),
-                changeLog.getAt().toString()
+            changeLog.getId(),
+            changeLog.getType().name(),
+            changeLog.getEmployeeNumber(),
+            changeLog.getMemo(),
+            changeLog.getIpAddress() == null ? null : changeLog.getIpAddress(),
+            changeLog.getAt().toString()
         );
     }
 
     // Slice<ChangeLog>을 CursorPageResponseChangeLogDto<ChangeLogDto>로 변환하는 메서드
     public CursorPageResponseChangeLogDto<ChangeLogDto> toDtoSlice(
-            Slice<ChangeLog> changeLogSlice) {
+        Slice<ChangeLog> changeLogSlice) {
 
         // 1. Slice<ChangeLog>의 content를 Stream을 이용해 List<ChangeLogDto>로 변환
         List<ChangeLogDto> dtoList = changeLogSlice.getContent().stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
+            .map(this::toDto)
+            .collect(Collectors.toList());
 
         // 2. CursorPageResponseChangeLogDto 에 필요한 커서 및 페이지 정보 계산
         Long nextIdAfter = null;
@@ -45,12 +45,12 @@ public class ChangeLogMapper {
 
         // 3. 변환된 DTO 리스트와 커서 정보를 담아 최종 응답 객체 생성
         return new CursorPageResponseChangeLogDto<>(
-                dtoList,
-                null, // nextCursor는 필요시 추가
-                nextIdAfter,
-                changeLogSlice.getSize(),
-                (int) changeLogSlice.getNumberOfElements(),
-                changeLogSlice.hasNext()
+            dtoList,
+            null, // nextCursor는 필요시 추가
+            nextIdAfter,
+            changeLogSlice.getSize(),
+            changeLogSlice.getNumberOfElements(),
+            changeLogSlice.hasNext()
         );
     }
 
